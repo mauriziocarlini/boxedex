@@ -4,308 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <title>Boxedex - Pokémon Living Dex Helper</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            text-align: center;
-            font-family: 'Roboto Mono', monospace;
-        }
-
-        /* Add some styling for the grid */
-        table {
-            margin: 0 auto;
-            border-collapse: collapse;
-            background-image: url(img/tile.png);
-            background-size: 49px;
-        }
-
-        h1 {
-            margin-bottom: 0;
-        }
-
-        h5 {
-            margin-top: 0;
-        }
-
-        td {
-            width: 48px;
-            height: 48px;
-            padding: 0px;
-            border: 1px solid #000;
-            text-align: center;
-            vertical-align: middle;
-            font-size: 12px;
-            font-weight: bold;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-
-        .tableHeader {
-            margin: 0 auto;
-            background-color: #DFF3C9;
-            width: 261px;
-            padding: 0 16px;
-            text-align: center;
-            line-height: 40px;
-            height: 40px;
-            font-size: 16px;
-            border: 1px solid #000;
-            border-bottom: none;
-        }
-
-        .tableFooter {
-            margin: 0 auto;
-            background-color: #DFF3C9;
-            width: 261px;
-            padding: 0 16px;
-            line-height: 40px;
-            height: 40px;
-            font-size: 12px;
-            text-align: left;
-            border: 1px solid #000;
-            border-top: none;
-        }
-
-        #rowResult,
-        #colResult,
-        #dexIdResult {
-            display: inline-block;
-            margin-right: 8px;
-            /* Add space between the results of Row and Col */
-        }
-
-        #dexIdResult {
-            float: right;
-            /* Move dexIdResult to the right */
-        }
-
-        /* Style for custom autosuggest dialog */
-        .autosuggest-dialog {
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 1;
-            margin-top: 8px; /* Adjust the margin as needed */
-            display: none; /* Hide the autosuggest dialog by default */
-        }
-
-        .autosuggest-item {
-            display: flex;
-            align-items: center;
-            padding: 5px;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-            height: 40px; /* Set the height of each autosuggest item */
-        }
-
-        .autosuggest-item img {
-            margin-right: 10px; /* Adjust the margin as needed */
-            width: 30px; /* Set the width of the sprite image */
-            height: 30px; /* Set the height of the sprite image */
-        }
-
-        .autosuggest-item span {
-            font-size: 14px; /* Adjust the font size as needed */
-        }
-
-        /* Style for modal */
-        .modal {
-            display: none;
-            /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-            z-index: 2;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            max-width: 600px; /* Set max width to 600px */
-            width: 80%;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
-<script>
-    // Global variable to store selected Pokémon name for autocomplete
-    let selectedPokemon = '';
-
-function openPokemonModal() {
-    document.getElementById('pokemonModal').style.display = 'block';
-    document.getElementById('pokemonName').focus(); // Focus the input when the modal is opened
-}
-
-    function closePokemonModal() {
-        document.getElementById('pokemonModal').style.display = 'none';
-    }
-
-    async function getPokemonData() {
-        // Get the user input (Pokémon name) from the input field
-        var pokemonName = selectedPokemon || document.getElementById('pokemonName').value.toLowerCase();
-
-        // Construct the PokeAPI URL for the specified Pokémon
-        var apiUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`;
-
-        try {
-            // Make a request to the PokeAPI
-            var response = await fetch(apiUrl);
-            var data = await response.json();
-            // Extract the dex index from the API response
-            var dexIndex = data.id;
-            // Perform the calculation: divide by 30 and round up
-            var calculatedValue = Math.ceil(dexIndex / 30);
-            // Calculate the "Spot" variable
-            var box = calculatedValue;
-            var spot = dexIndex - 30 * box + 30;
-            // Calculate the "ROW" variable and round down
-            var row = Math.floor((spot - 1) / 6) + 1;
-            // Calculate the "COL" variable
-            var col = (spot - 1) % 6 + 1;
-
-            // Display the calculated values on the page
-            document.getElementById('boxResult').innerText = `BOX ${calculatedValue}`;
-            document.getElementById('rowResult').innerText = `Row: ${row}`;
-            document.getElementById('colResult').innerText = `Col: ${col}`;
-            // Display the pure dex id at the end
-            document.getElementById('dexIdResult').innerText = `ID: #${dexIndex}`;
-            // Display the grid
-            displayGrid(spot, data.sprites.front_default);
-            closePokemonModal(); // Close the modal after selecting Pokémon
-        } catch (error) {
-            // Display an error message if the Pokémon is not found
-            document.getElementById('boxResult').innerText = `Error: Pokémon not found`;
-            document.getElementById('rowResult').innerText = '';
-            document.getElementById('colResult').innerText = '';
-            document.getElementById('dexIdResult').innerText = '';
-            // Clear the grid on error
-            displayGrid();
-        }
-    }
-
-    function displayGrid(selectedSpot, spriteUrl) {
-        // Get the table element
-        var table = document.getElementById('gridTable');
-        // Clear existing rows
-        table.innerHTML = '';
-        // Create the grid rows and cells
-        for (var i = 0; i < 5; i++) {
-            var row = table.insertRow(i);
-            for (var j = 0; j < 6; j++) {
-                var cell = row.insertCell(j);
-
-                // Set background image if the cell number matches the selected spot
-                if (selectedSpot !== undefined && i * 6 + j + 1 === selectedSpot) {
-                    cell.style.backgroundImage = `url(${spriteUrl})`;
-                }
-            }
-        }
-    }
-
-    // Function to fetch and update the suggestions based on user input
-    async function updateSuggestions() {
-        var input = document.getElementById('pokemonName');
-        var autosuggestDialog = document.getElementById('autosuggestDialog');
-        // Fetch the list of Pokémon names from the PokeAPI without limit
-        var inputValue = input.value.toLowerCase();
-
-        // Show autosuggest dialog only if the input is active and has at least three characters
-        if (document.activeElement === input && inputValue.length >= 3) {
-            var apiUrl = `https://pokeapi.co/api/v2/pokemon?limit=3000`;
-
-            // Fetching a higher limit, adjust as needed
-            try {
-                var response = await fetch(apiUrl);
-                var data = await response.json();
-                // Clear existing autosuggest dialog
-                autosuggestDialog.innerHTML = '';
-
-                // Filter and add suggestions based on user input and dex id
-                data.results.forEach(function (pokemon) {
-                    var name = pokemon.name;
-                    var dexId = pokemon.url.split('/').filter(Boolean).pop();
-
-                    // Extract dex id from URL
-                    if (name.startsWith(inputValue) && dexId <= 2000) {
-                        // Create suggestion item for autosuggest dialog
-                        var autosuggestItem = document.createElement('div');
-                        autosuggestItem.classList.add('autosuggest-item');
-                        autosuggestItem.innerHTML = `
-                            <img src="${getPokemonSpriteUrl(dexId)}" alt="${name}">
-                            ${name}
-                        `;
-                        // Attach click event to trigger data retrieval
-                        autosuggestItem.addEventListener('click', function () {
-                            selectedPokemon = name;
-                            input.value = selectedPokemon;
-                            updateSuggestions(); // Hide autosuggest dialog
-                            getPokemonData(); // Simulate submit
-                            closePokemonModal(); // Close the modal after selecting Pokémon
-                        });
-                        autosuggestDialog.appendChild(autosuggestItem);
-                    }
-                });
-                autosuggestDialog.style.display = 'block'; // Show autosuggest dialog
-            } catch (error) {
-                console.error('Error fetching Pokémon names: ', error);
-            }
-        } else {
-            autosuggestDialog.style.display = 'none'; // Hide autosuggest dialog if conditions not met
-        }
-    }
-
-    // Function to get Pokémon sprite URL based on dex id
-    function getPokemonSpriteUrl(dexId) {
-        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${dexId}.png`;
-    }
-
-
-</script>
-
+    <script defer src="script.js"></script>
 </head>
 
 <body onload="displayGrid()">
     <h1>Boxedex</h1>
-    <h5>The Living Dex Helper</h5>
+    <p>Pokémon Living Dex Helper</p>
 
-<!-- The modal for selecting Pokémon -->
-<div id="pokemonModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closePokemonModal()">&times;</span>
-        <h2>Search Pokémon</h2>
-        <!-- Add the oninput event to trigger the enhanced autosuggest -->
-        <input type="search" autocomplete="off" autocorrect="off" spellcheck="false" id="pokemonName" placeholder="Pokémon name" oninput="updateSuggestions()">
-        <!-- Add the autosuggest dialog -->
-        <div id="autosuggestDialog" class="autosuggest-dialog"></div>
+    <!-- DIALOG -->
+    <div id="pokemonModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePokemonModal()">&times;</span>
+            <p>Search Pokémon</p>
+            <!-- Add the oninput event to trigger the enhanced autosuggest -->
+            <input type="search" autocomplete="off" autocorrect="off" spellcheck="false" id="pokemonName" placeholder="Pokémon name" oninput="updateSuggestions()">
+            <!-- Add the autosuggest dialog -->
+            <div id="autosuggestDialog" class="autosuggest-dialog"></div>
+        </div>
     </div>
-</div>
 
-    <!-- Add the button to trigger the modal -->
-    <button onclick="openPokemonModal()">Select Pokémon</button>
+    <!-- CTA -->
+    <button onclick="openPokemonModal()">Search Pokémon</button>
 
-    <br>
-
-    <!-- Add the grid table -->
+    <!-- BOX -->
     <div class="tableHeader" id="boxResult"></div>
-    <table id="gridTable"></table>
+    <table class="tableBody" id="gridTable"></table>
     <div class="tableFooter">
         <div id="rowResult"></div>
         <div id="colResult"></div>

@@ -1,0 +1,161 @@
+h1,p,div {
+    font-weight: normal;
+}
+body {
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #04364A;
+    color: #fff;
+}
+
+h1 {
+    font-size: 24px;
+    margin-top: 40px;
+}
+
+p {
+    font-size: 10px;
+}
+
+table {
+    margin: 0 auto;
+    background-color: #DAFFFB;
+    border-collapse: collapse;
+}
+
+td {
+    width: 48px;
+    height: 48px;
+    padding: 0px;
+    border: 1px solid #176B87;
+    box-sizing: border-box;
+    text-align: center;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.tableHeader {
+    color: #04364A;
+    box-sizing: border-box;
+    width: 289px;
+    margin: 0 auto;
+    background-color: #64CCC5;
+    text-align: center;
+    line-height: 56px;
+    height: 56px;
+    font-size: 16px;
+    border: 1px solid #176B87;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+}
+
+.tableFooter {
+    color: #176B87;
+    box-sizing: border-box;
+    width: 289px;
+    margin: 0 auto;
+    background-color: #64CCC5;
+    text-align: center;
+    line-height: 40px;
+    height: 40px;
+    font-size: 8px;
+    border: 1px solid #176B87;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+}
+
+#rowResult, #colResult, #dexIdResult {
+    display: inline-block;
+    margin: 0 6px;
+}
+
+
+.autosuggest-dialog {
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1;
+    margin-top: 8px;
+    display: none;
+}
+
+.autosuggest-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    height: 50px;
+    font-size: 10px;
+    text-transform: capitalize;
+}
+
+.autosuggest-item:last-child {
+    border-bottom: none;
+}
+
+.autosuggest-item img {
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    color: #000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 32px auto;
+    padding: 20px;
+    max-width: 400px;
+    border-radius: 4px;
+    width: 80%;
+}
+
+
+button {
+    background-color: #EF6262;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 24px;
+    transition: background-color 0.3s;
+    margin: 10px 0 20px 0;
+    display: inline-block;
+    font-family: 'Press Start 2P', cursive;
+}
+
+button:hover {
+    background-color: #DB5656;
+}
+
+input[type="search"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    margin-top: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    font-size: 14px;
+    color: #333;
+}
+
+input[type="search"]:focus {
+    outline: none;
+    border-color: #2196F3;
+}
+
