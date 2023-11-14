@@ -1,123 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
     <link rel="stylesheet" href="style.css">
     <title>Boxedex | Pokémon Living Dex Helper</title>
-
-    <script>
-        async function getPokemonData() {
-            // Get the user input (Pokémon name) from the input field
-            var pokemonName = document.getElementById('pokemonName').value.toLowerCase();
-
-            // Construct the PokeAPI URL for the specified Pokémon
-            var apiUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`;
-
-            try {
-                // Make a request to the PokeAPI
-                var response = await fetch(apiUrl);
-                var data = await response.json();
-
-                // Extract the dex index from the API response
-                var dexIndex = data.id;
-
-                // Perform the calculation: divide by 30 and round up
-                var calculatedValue = Math.ceil(dexIndex / 30);
-
-                // Calculate the "Spot" variable
-                var box = calculatedValue;
-                var spot = dexIndex - 30 * box + 30;
-
-                // Calculate the "ROW" variable and round down
-                var row = Math.floor((spot - 1) / 6) + 1;
-
-                // Calculate the "COL" variable
-                var col = (spot - 1) % 6 + 1;
-
-                // Display the calculated values on the page
-                document.getElementById('boxResult').innerText = `BOX ${calculatedValue}`;
-                document.getElementById('rowResult').innerText = `Row: ${row}`;
-                document.getElementById('colResult').innerText = `Col: ${col}`;
-
-                // Display the pure dex id at the end
-                document.getElementById('dexIdResult').innerText = `ID: #${dexIndex}`;
-
-                // Display the grid
-                displayGrid(spot, data.sprites.front_default);
-            } catch (error) {
-                // Display an error message if the Pokémon is not found
-                document.getElementById('boxResult').innerText = `Error: Pokémon not found`;
-                document.getElementById('rowResult').innerText = '';
-                document.getElementById('colResult').innerText = '';
-                document.getElementById('dexIdResult').innerText = '';
-                // Clear the grid on error
-                displayGrid();
-            }
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Roboto Mono', monospace;
         }
 
-        function displayGrid(selectedSpot, spriteUrl) {
-            // Get the table element
-            var table = document.getElementById('gridTable');
-
-            // Clear existing rows
-            table.innerHTML = '';
-
-            // Create the grid rows and cells
-            for (var i = 0; i < 5; i++) {
-                var row = table.insertRow(i);
-
-                for (var j = 0; j < 6; j++) {
-                    var cell = row.insertCell(j);
-
-                    // Set background image if the cell number matches the selected spot
-                    if (selectedSpot !== undefined && i * 6 + j + 1 === selectedSpot) {
-                        cell.style.backgroundImage = `url(${spriteUrl})`;
-                    }
-                }
-            }
+        /* Add some styling for the grid */
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-image: url(img/tile.png);
+            background-size: 49px;
         }
 
-        // Function to fetch and update the suggestions based on user input
-        async function updateSuggestions() {
-            var input = document.getElementById('pokemonName');
-            var datalist = document.getElementById('pokemonList');
-
-            // Fetch the list of Pokémon names from the PokeAPI without limit
-            var inputValue = input.value.toLowerCase();
-            var apiUrl = `https://pokeapi.co/api/v2/pokemon?limit=3000`; // Fetching a higher limit, adjust as needed
-
-            try {
-                var response = await fetch(apiUrl);
-                var data = await response.json();
-
-                // Clear existing suggestions
-                datalist.innerHTML = '';
-
-                // Filter and add suggestions based on user input and dex id
-                data.results.forEach(function (pokemon) {
-                    var name = pokemon.name;
-                    var dexId = pokemon.url.split('/').filter(Boolean).pop(); // Extract dex id from URL
-
-                    if (name.startsWith(inputValue) && dexId <= 2000) {
-                        var option = document.createElement('option');
-                        option.value = name;
-                        datalist.appendChild(option);
-                    }
-                });
-            } catch (error) {
-                console.error('Error fetching Pokémon names:', error);
-            }
+        h1 {
+            margin-bottom: 0;
         }
-    </script>
 
+        h5 {
+            margin-top: 0;
+        }
+
+        td {
+            width: 48px;
+            height: 48px;
+            padding: 0px;
+            border: 1px solid #000;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 12px;
+            font-weight: bold;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .tableHeader {
+            margin: 0 auto;
+            background-color: #DFF3C9;
+            width: 261px;
+            padding: 0 16px;
+            text-align: center;
+            line-height: 40px;
+            height: 40px;
+            font-size: 16px;
+            border: 1px solid #000;
+            border-bottom: none;
+        }
+
+        .tableFooter {
+            margin: 0 auto;
+            background-color: #DFF3C9;
+            width: 261px;
+            padding: 0 16px;
+            line-height: 40px;
+            height: 40px;
+            font-size: 12px;
+            text-align: left;
+            border: 1px solid #000;
+            border-top: none;
+        }
+
+        #rowResult,
+        #colResult,
+        #dexIdResult {
+            display: inline-block;
+            margin-right: 8px;
+            /* Aggiungi uno spazio tra i risultati di Row e Col */
+        }
+
+        #dexIdResult {
+            float: right;
+            /* Sposta dexIdResult a destra */
+        }
+    </style>
 </head>
 
-
-
 <body onload="displayGrid()">
-
     <h1>Boxedex</h1>
     <h5>The Living Dex Helper</h5>
     <!-- Use a form element to wrap the input and button -->
@@ -135,10 +101,11 @@
     <div class="tableFooter">
         <div id="rowResult"></div>
         <div id="colResult"></div>
-        <div id="dexIdResult"></div>        
+        <div id="dexIdResult"></div>
     </div>
     <br>
-    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'O4O0R4504');kofiwidget2.draw();</script> 
-
+    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+    <script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'O4O0R4504');kofiwidget2.draw();</script>
 </body>
+
 </html>
