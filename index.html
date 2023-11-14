@@ -2,78 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="style.css">
     <title>Boxedex | Pokémon Living Dex Helper</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: 'Roboto Mono', monospace;
-        }
-        /* Add some styling for the grid */
-        table {
-            margin: 0 auto;
-            border-collapse: collapse;
-            background-image: url(img/tile.png);
-            background-size: 49px;
-        }
 
-        h1 {
-            margin-bottom: 0;
-        }
-        h5 {
-            margin-top: 0;
-        }
-
-        td {
-            width: 48px;
-            height: 48px;
-            padding: 0px;
-            border: 1px solid #000;
-            text-align: center;
-            vertical-align: middle;
-            font-size: 12px;
-            font-weight: bold;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-
-        .tableHeader {
-            margin: 0 auto;
-            background-color: #DFF3C9;
-            width: 261px;
-            padding: 0 16px;
-            text-align: center;
-            line-height: 40px;
-            height: 40px;
-            font-size: 16px;
-            border: 1px solid #000;
-            border-bottom: none;
-        }
-
-        .tableFooter {
-            margin: 0 auto;
-            background-color: #DFF3C9;
-            width: 261px;
-            padding: 0 16px;
-            line-height: 40px;
-            height: 40px;
-            font-size: 12px;
-            text-align: left;
-            border: 1px solid #000;
-            border-top: none;
-        }
-
-        #rowResult, #colResult, #dexIdResult {
-            display: inline-block;
-            margin-right: 8px; /* Aggiungi uno spazio tra i risultati di Row e Col */
-        }
-
-        #dexIdResult {
-            float: right; /* Sposta dexIdResult a destra */
-        }
-
-    </style>
     <script>
         async function getPokemonData() {
             // Get the user input (Pokémon name) from the input field
@@ -178,8 +111,13 @@
             }
         }
     </script>
+
 </head>
+
+
+
 <body onload="displayGrid()">
+
     <h1>Boxedex</h1>
     <h5>The Living Dex Helper</h5>
     <!-- Use a form element to wrap the input and button -->
@@ -199,10 +137,8 @@
         <div id="colResult"></div>
         <div id="dexIdResult"></div>        
     </div>
-
     <br>
-
-<script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'O4O0R4504');kofiwidget2.draw();</script> 
+    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'O4O0R4504');kofiwidget2.draw();</script> 
 
 </body>
 </html>
