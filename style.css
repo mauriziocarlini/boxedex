@@ -167,7 +167,7 @@ input[type="search"]:focus {
 /* Style for the clear cache button */
 #clearCacheButton {
     color: #DAFFFB;
-    background-color: none;
+    background-color: transparent;
     padding: 5px 10px;
     border: none;
     cursor: pointer;
