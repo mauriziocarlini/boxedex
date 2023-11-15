@@ -57,20 +57,8 @@
     <br>
 
     <!-- Add a button to clear cache and refresh page -->
-    <button id="clearCacheButton" onclick="clearCacheRefreshPage()" style="display: none;">Clear Cache and Refresh</button>
-    <script>
-        // Check for a new version and display the button if needed
-        function checkForNewVersion() {
-            var cachedVersion = localStorage.getItem('appVersion');
-            var currentVersion = document.head.querySelector('meta[name="version"]').content;
-            
-            if (cachedVersion !== currentVersion) {
-                document.getElementById('clearCacheButton').style.display = 'block';
-            }
-        }    
-        // Run the version check when the page loads
-        window.onload = checkForNewVersion;
-    </script>
+    <button id="clearCacheButton" onclick="clearCacheRefreshPage()">Clear cache and refresh</button>
+
     <br>
 
     <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
