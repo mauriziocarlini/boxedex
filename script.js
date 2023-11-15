@@ -155,3 +155,27 @@ function displayGrid(selectedSpot, spriteUrl) {
         }
     }
 }
+
+function refreshWebApp() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            // Unregister all service workers
+            registrations.forEach(function(registration) {
+                registration.unregister();
+            });
+
+            // Clear caches if needed
+            caches.keys().then(function(cacheNames) {
+                cacheNames.forEach(function(cacheName) {
+                    caches.delete(cacheName);
+                });
+            });
+
+            // Display a message to the user
+            alert('Web app updated! Please reopen the app.');
+        });
+    } else {
+        // If service worker is not supported
+        alert('Service worker not supported. Please manually refresh the page.');
+    }
+}
