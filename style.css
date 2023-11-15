@@ -21,7 +21,7 @@ table {
     margin: 0 auto;
 }
 
-table, .tableHeader. .tableFooter {
+table, .tableHeader, .tableFooter {
     background-color: #29ADB2;
     color: #04364A;
 }
