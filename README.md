@@ -7,4 +7,4 @@ It also helps you by visualizing a Box grid preview.
 
 You can save Boxedex on the homescreen of your device, and use it as a native app.
 
-[https://](https://mauriziocarlini.github.io/boxedex/)Boxedex Web App
+[Boxedex Web App](https://mauriziocarlini.github.io/boxedex/)https://mauriziocarlini.github.io/boxedex/
