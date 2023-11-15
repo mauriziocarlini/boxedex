@@ -155,9 +155,3 @@ function displayGrid(selectedSpot, spriteUrl) {
         }
     }
 }
-
-// Function to clear cache and refresh the page
-function clearCacheRefreshPage() {
-    location.reload(true); // Pass true to force a reload from the server, bypassing the cache
-    window.location.reload(true);
-}
