@@ -90,6 +90,11 @@ td {
     text-transform: capitalize;
 }
 
+.autosuggest-item:hover {
+    background-color: #f0f0f0;
+}
+
+
 .autosuggest-item:last-child {
     border-bottom: none;
 }
