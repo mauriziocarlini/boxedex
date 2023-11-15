@@ -20,7 +20,6 @@ p {
 table {
     margin: 0 auto;
     background-color: #DAFFFB;
-    border-collapse: collapse;
 }
 
 td {
@@ -38,7 +37,7 @@ td {
 .tableHeader {
     color: #04364A;
     box-sizing: border-box;
-    width: 289px;
+    width: 302px;
     margin: 0 auto;
     background-color: #64CCC5;
     text-align: center;
@@ -53,7 +52,7 @@ td {
 .tableFooter {
     color: #04364A;
     box-sizing: border-box;
-    width: 289px;
+    width: 302px;
     margin: 0 auto;
     background-color: #64CCC5;
     text-align: center;
