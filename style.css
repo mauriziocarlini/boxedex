@@ -5,7 +5,7 @@ body {
     text-align: center;
     font-family: 'Press Start 2P', cursive;
     background-color: #04364A;
-    color: #fff;
+    color: #FFFFFF;
 }
 
 h1 {
@@ -19,7 +19,11 @@ p {
 
 table {
     margin: 0 auto;
-    background-color: #64CCC5;
+}
+
+table, .tableHeader. .tableFooter {
+    background-color: #29ADB2;
+    color: #04364A;
 }
 
 td {
@@ -36,11 +40,9 @@ td {
 }
 
 .tableHeader {
-    color: #04364A;
     box-sizing: border-box;
     width: 302px;
     margin: 0 auto;
-    background-color: #64CCC5;
     text-align: center;
     line-height: 60px;
     height: 56px;
@@ -49,11 +51,9 @@ td {
 }
 
 .tableFooter {
-    color: #04364A;
     box-sizing: border-box;
     width: 302px;
     margin: 0 auto;
-    background-color: #64CCC5;
     text-align: center;
     line-height: 40px;
     height: 40px;
@@ -79,7 +79,7 @@ td {
     display: flex;
     align-items: center;
     padding: 5px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #EEEEEE;
     cursor: pointer;
     height: 50px;
     font-size: 10px;
@@ -87,7 +87,7 @@ td {
 }
 
 .autosuggest-item:hover {
-    background-color: #f0f0f0;
+    background-color: #F0F0F0;
 }
 
 
@@ -104,7 +104,7 @@ td {
 .modal {
     display: none;
     position: fixed;
-    color: #000;
+    color: #000000;
     top: 0;
     left: 0;
     width: 100%;
@@ -115,7 +115,7 @@ td {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #FEFEFE;
     margin: 32px auto;
     padding: 20px;
     max-width: 400px;
@@ -146,7 +146,7 @@ button:hover {
 input[type="search"] {
     width: 100%;
     padding: 10px;
-    border: 1px solid #bdbdbd;
+    border: 1px solid #BDBDBD;
     border-radius: 4px;
     margin-top: 8px;
     box-sizing: border-box;
