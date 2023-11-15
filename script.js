@@ -146,24 +146,9 @@ function displayGrid(selectedSpot, spriteUrl) {
         for (var j = 0; j < 6; j++) {
             var cell = row.insertCell(j);
 
-            // Calculate the spot number for the current cell
-            var currentSpot = i * 6 + j + 1;
-
-            // Determine the Pokemon number for the current cell
-            var pokemonNumber = currentSpot;
-
             // Set background image if the cell number matches the selected spot
-            if (selectedSpot !== undefined && currentSpot === selectedSpot) {
+            if (selectedSpot !== undefined && i * 6 + j + 1 === selectedSpot) {
                 cell.style.backgroundImage = `url(${spriteUrl})`;
-            } else {
-                // Adjust the Pokemon number for cells before and after the selected spot
-                if (currentSpot > selectedSpot) {
-                    pokemonNumber -= 1; // For cells after the selected spot
-                }
-
-                // Set background image for cells before and after the selected spot
-                cell.style.backgroundImage = `url(${getPokemonSpriteUrl(pokemonNumber)})`;
-                cell.style.opacity = 0.5; // Set opacity to 50%
             }
         }
     }
