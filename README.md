@@ -1,8 +1,10 @@
 # BOXEDEX - Pokémon Living Dex Helper
-This tool helps you organize your Pokémon in your boxes.
+This web app helps you organize your Pokémon in your boxes.
 
-Just input the Pokémon name, the platform will tell you the Box, Row and Column where you need to place it.
+Just search for the Pokémon, and Boxedex will tell you the Box, the Row and the Column where you need to place your little friend.
 
-It also helps you placing it by visualizing a Box grid preview.
+It also helps you by visualizing a Box grid preview.
 
-[https://](https://mauriziocarlini.github.io/boxedex/)https://mauriziocarlini.github.io/boxedex/
+You can save Boxedex on the homescreen of your device, and use it as a native app.
+
+[https://](https://mauriziocarlini.github.io/boxedex/)Boxedex Web App
