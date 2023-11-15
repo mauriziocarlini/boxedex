@@ -53,7 +53,7 @@ td {
 .tableFooter {
     box-sizing: border-box;
     width: 302px;
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
     text-align: center;
     line-height: 40px;
     height: 40px;
@@ -159,23 +159,3 @@ input[type="search"]:focus {
     outline: none;
     border-color: #2196F3;
 }
-
-/* Style for the clear cache button */
-#clearCacheButton {
-    color: rgba(255,255,255,0.8);
-    transition: color 0.3s;
-    background-color: transparent;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 8px;
-    text-decoration: none;
-    margin-bottom: 30px;
-    display: inline-block;
-}
-
-/* Hover effect */
-#clearCacheButton:hover {
-    color: rgba(255,255,255,1);
-}
-
