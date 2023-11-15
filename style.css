@@ -19,14 +19,14 @@ p {
 
 table {
     margin: 0 auto;
-    background-color: #DAFFFB;
+    background-color: #64CCC5;
 }
 
 td {
     width: 48px;
     height: 48px;
     padding: 0px;
-    border: 1px solid #64CCC5;
+    border-radius: 2px;
     box-sizing: border-box;
     text-align: center;
     vertical-align: middle;
