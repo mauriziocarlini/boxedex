@@ -171,9 +171,9 @@ input[type="search"]:focus {
     padding: 5px 10px;
     border: none;
     cursor: pointer;
-    font-size: 6px;
+    font-size: 8px;
     text-decoration: none;
-    margin-top: 10px;
+    margin-top: 40px;
     display: inline-block;
 }
 
