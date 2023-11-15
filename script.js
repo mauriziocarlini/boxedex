@@ -148,10 +148,7 @@ function displayGrid(selectedSpot, spriteUrl) {
             // Set background image if the cell number matches the selected spot
             if (selectedSpot !== undefined && i * 6 + j + 1 === selectedSpot) {
                 cell.style.backgroundImage = `url(${spriteUrl})`;
-            } // else {
-              //    // Alternate background color for cells without a sprite
-              //    cell.style.backgroundColor = (i + j) % 2 === 0 ? '#79DDD7' : '#89E5DF';
-              //}
+            } 
         }
     }
 }
