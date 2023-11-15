@@ -74,7 +74,7 @@ async function updateSuggestions() {
     var input = document.getElementById('pokemonName');
     var autosuggestDialog = document.getElementById('autosuggestDialog');
     // Fetch the list of Pokémon names from the PokeAPI without limit
-    var inputValue = input.value.toLowerCase().replace(/\s/g, ''); // Remove spaces from the input
+    var inputValue = input.value.toLowerCase();
 
     // Show autosuggest dialog only if the input is active and has at least three characters
     if (document.activeElement === input && inputValue.length >= 1) {
