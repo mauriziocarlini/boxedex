@@ -158,14 +158,6 @@ function displayGrid(selectedSpot, spriteUrl) {
 
 // Function to clear cache and refresh the page
 function clearCacheRefreshPage() {
-  if ('serviceWorker' in navigator) {
-    // Unregister the service worker to clear cache
-    navigator.serviceWorker.getRegistrations().then(function(registrations) {
-      for (const registration of registrations) {
-        registration.unregister();
-      }
-      // Reload the page
-      window.location.reload(true);
-    });
-  }
+    location.reload(true); // Pass true to force a reload from the server, bypassing the cache
+    window.location.reload(true);
 }
