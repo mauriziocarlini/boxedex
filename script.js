@@ -149,6 +149,9 @@ function displayGrid(selectedSpot, spriteUrl) {
             // Set background image if the cell number matches the selected spot
             if (selectedSpot !== undefined && i * 6 + j + 1 === selectedSpot) {
                 cell.style.backgroundImage = `url(${spriteUrl})`;
+            } else {
+                // Set background opacity color for empty cells
+                cell.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
             }
         }
     }
