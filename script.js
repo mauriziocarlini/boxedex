@@ -23,6 +23,7 @@ document.addEventListener('click', function (event) {
     // Check if the click is outside the modal content
     if (event.target === modal) {
         closePokemonModal();
+        updateSuggestions(); // Hide autosuggest dialog
     }
 });
 
@@ -50,11 +51,9 @@ async function getPokemonData() {
         var col = (spot - 1) % 6 + 1;
 
         // Display the calculated values on the page
-        document.getElementById('boxResult').innerText = `BOX ${calculatedValue}`;
-        document.getElementById('rowResult').innerText = `Row: ${row}`;
-        document.getElementById('colResult').innerText = `Col: ${col}`;
-        // Display the pure dex id at the end
-        document.getElementById('dexIdResult').innerText = `ID: #${dexIndex}`;
+        document.getElementById('boxResult').innerText = `Box ${calculatedValue}`;
+        document.getElementById('rowResult').innerText = `Row ${row}`;
+        document.getElementById('colResult').innerText = `Column ${col}`;
         // Display the grid
         displayGrid(spot, data.sprites.front_default);
         closePokemonModal(); // Close the modal after selecting Pokémon
@@ -63,7 +62,6 @@ async function getPokemonData() {
         document.getElementById('boxResult').innerText = `Error: Pokémon not found`;
         document.getElementById('rowResult').innerText = '';
         document.getElementById('colResult').innerText = '';
-        document.getElementById('dexIdResult').innerText = '';
         // Clear the grid on error
         displayGrid();
     }
@@ -76,9 +74,9 @@ async function updateSuggestions() {
     // Fetch the list of Pokémon names from the PokeAPI without limit
     var inputValue = input.value.toLowerCase();
 
-    // Show autosuggest dialog only if the input is active and has at least three characters
+    // Show autosuggest dialog only if the input is active and has at least one character
     if (document.activeElement === input && inputValue.length >= 1) {
-        var apiUrl = `https://pokeapi.co/api/v2/pokemon?limit=3000`;
+        var apiUrl = `https://pokeapi.co/api/v2/pokemon?limit=2000`;
 
         // Fetching a higher limit, adjust as needed
         try {
