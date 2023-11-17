@@ -16,6 +16,9 @@ h1 {
 p {
     font-size: 10px;
 }
+.subtitle {
+    opacity: 0.8;
+}
 
 table {
     margin: 0 auto;
@@ -23,7 +26,7 @@ table {
 
 table, .tableHeader, .tableFooter {
     background-color: #29ADB2;
-    color: #000000;
+    color: #04364A;
 }
 
 td {
@@ -61,38 +64,41 @@ td {
     border-radius: 0 0 4px 4px;
 }
 
-#rowResult, #colResult, #dexIdResult {
+#rowResult, #colResult {
     display: inline-block;
     margin: 0 6px;
+    opacity: 0.8;
 }
 
-
 .autosuggest-dialog {
-    max-height: 400px;
+    max-height: 404px;
     overflow-y: auto;
     z-index: 1;
-    margin-top: 8px;
+    margin-top: 16px;
     display: none;
 }
 
 .autosuggest-item {
     display: flex;
     align-items: center;
-    padding: 5px;
-    border-bottom: 1px solid #EEEEEE;
     cursor: pointer;
     height: 50px;
+    padding: 2px 4px;
     font-size: 10px;
+    border-radius: 4px;
     text-transform: capitalize;
+    box-shadow: 0px 8px 0px -7px #F2F2F2;
 }
 
+
 .autosuggest-item:hover {
-    background-color: #F0F0F0;
+    background-color: #F4F4F4;
+    box-shadow: none;
 }
 
 
 .autosuggest-item:last-child {
-    border-bottom: none;
+    box-shadow: none;
 }
 
 .autosuggest-item img {
@@ -118,7 +124,7 @@ td {
     background-color: #FEFEFE;
     margin: 32px auto;
     padding: 20px;
-    max-width: 400px;
+    max-width: 302px;
     border-radius: 4px;
     width: 80%;
 }
@@ -134,7 +140,7 @@ button {
     font-size: 12px;
     line-height: 24px;
     transition: background-color 0.3s;
-    margin: 10px 0 20px 0;
+    margin: 20px 0;
     display: inline-block;
     font-family: 'Press Start 2P', cursive;
 }
