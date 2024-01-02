@@ -52,8 +52,9 @@ async function getPokemonData() {
 
         // Display the calculated values on the page
         document.getElementById('boxResult').innerText = `Box ${calculatedValue}`;
+        document.getElementById('colResult').innerText = `Col ${col}`;
         document.getElementById('rowResult').innerText = `Row ${row}`;
-        document.getElementById('colResult').innerText = `Column ${col}`;
+
         // Display the grid
         displayGrid(spot, data.sprites.front_default);
         closePokemonModal(); // Close the modal after selecting Pokémon
